@@ -55,7 +55,7 @@ app.use('/', (req, res, next) => {
 // const server = http.createServer(app);
 // server.listen(8080)
 
-app.listen(8080, () => {
+app.listen(7000, () => {
   // console.log(`app is running on 8080`)
 });
 

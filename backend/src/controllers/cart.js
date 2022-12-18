@@ -8,15 +8,10 @@ exports.getAllCart = async (req, res) => {
   } catch (error) {}
 };
 
-// random = no product
-// product availabe -> but not in cart => need to push to cart arr
-// products available in cart -> need to increase quantity.
-
 exports.addToCart = async (req, res) => {
   const { productId, quantity } = req.body;
-
   try {
-    const product = await Product.findOne({ _id: productId });
+    const product = await Product.findOne({_id: productId });
     if (!product) {
       res.json({ message: "product not found" });
       return;
@@ -55,3 +50,13 @@ exports.addToCart = async (req, res) => {
     res.status(400).json({err: error})
   }
 };
+
+exports.deleteCart = async (req, res) => {
+  try {
+    await Cart.findByIdAndDelete(req.params.id);
+    res.status(200).json("Cart has been deleted...");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
